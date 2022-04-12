@@ -6,18 +6,23 @@
                 v-for="(apt, i) in appointments" 
                 v-bind:key="i"
             >
-                <button class="mr-2 btn btn-sm btn-danger">
+                <!-- Del Button -->
+                <button v-on:click="$emit('remove', apt)" class="mr-2 btn btn-sm btn-danger">
                     X
                 </button>
+                <!-- Informatin Section -->
                 <div class="w-100">
+                    <!-- Name and Date -->
                     <div class="d-flex justify-content-between">
                         <span class="h4 text-primary">{{apt.petName}}</span>
                         <span class="float-right">{{formattedDate(apt.aptDate)}}</span>
                     </div>
+                    <!-- Owner Info -->
                     <div class="owner-name">
                         <span class="font-weight-bold text-primary mr-1">Owner:</span>
                         <span>{{apt.petOwner}}</span>
                     </div>
+                    <!-- Notes -->
                     <div>
                         {{apt.aptNotes}}
                     </div>

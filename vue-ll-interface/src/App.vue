@@ -3,7 +3,7 @@
   <div id="main-app" class="container">
 
     <div class="row justify-content-center">
-      <appointment-list v-bind:appointments="appointments"/>
+      <appointment-list v-bind:appointments="appointments" v-on:remove="removeApt"/>
     </div>
     
   </div>
@@ -12,8 +12,9 @@
 
 <!-- App State -->
 <script>
-  import axios from "axios";
-  import AppointmentList from "./components/AppointmentList.vue";
+  import axios from "axios"
+  import AppointmentList from "./components/AppointmentList.vue"
+  import _ from "lodash"
 
   export default {
 
@@ -23,7 +24,6 @@
     // -- data --
     data: function () {
       return {
-        title: "Current Appointments:",
         appointments: []
       };
     },
@@ -37,6 +37,14 @@
     mounted() {
       axios.get("../data/appointments.json")
         .then( response => (this.appointments = response.data) )
+    },
+
+    // methods
+    methods: {
+      // lodash function that filters out
+      removeApt(apt) {
+        this.appointments = _.without(this.appointments, apt)
+      }
     }
   };
 </script>
