@@ -12,7 +12,7 @@
                 <div class="w-100">
                     <div class="d-flex justify-content-between">
                         <span class="h4 text-primary">{{apt.petName}}</span>
-                        <span class="float-right">{{apt.aptDate}}</span>
+                        <span class="float-right">{{formattedDate(apt.aptDate)}}</span>
                     </div>
                     <div class="owner-name">
                         <span class="font-weight-bold text-primary mr-1">Owner:</span>
@@ -28,12 +28,20 @@
 </template>
 
 <script>
+import moment from "moment";
 
 export default ({
 
     name: "AppointmentList", 
     
-    props: ["appointments"]
+    props: ["appointments"],
+
+    methods: {
+
+        formattedDate(dateArg) {
+            return moment(new Date(dateArg)).format("MM-DD-YY, h:mm a")
+        }
+    }
 
 })
 </script>
