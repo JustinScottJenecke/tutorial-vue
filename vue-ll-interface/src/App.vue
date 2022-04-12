@@ -24,7 +24,8 @@
     // -- data --
     data: function () {
       return {
-        appointments: []
+        appointments: [],
+        aptIndex: 0
       };
     },
 
@@ -36,7 +37,15 @@
     // -- lifecycle hooks --
     mounted() {
       axios.get("../data/appointments.json")
-        .then( response => (this.appointments = response.data) )
+        .then( response => (this.appointments = response.data.map( apt => {
+
+            apt.aptId = this.aptIndex
+            this.aptIndex++
+
+            return apt
+          })
+        ) 
+      )
     },
 
     // methods

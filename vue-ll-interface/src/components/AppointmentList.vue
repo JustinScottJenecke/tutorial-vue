@@ -3,8 +3,8 @@
         <div class="list-group list-group-flush">
             <div 
                 class="list-group-item d-flex align-items-start" 
-                v-for="(apt, i) in appointments" 
-                v-bind:key="i"
+                v-for="(apt) in appointments" 
+                :key="apt.aptIndex"
             >
                 <!-- Del Button -->
                 <button v-on:click="$emit('remove', apt)" class="mr-2 btn btn-sm btn-danger">
