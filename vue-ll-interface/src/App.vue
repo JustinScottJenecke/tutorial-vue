@@ -2,23 +2,10 @@
 <template>
   <div id="main-app" class="container">
 
-    <h4>{{ title }}</h4>
-
-    <button class="mr-2">+ Add Appointment</button>
-
-    <section>
-      <br>
-      <div v-for="(apt, i) in appointments" v-bind:key="i">
-        <h4>Name: {{apt.petName}} </h4>
-        <h5>Owner: {{apt.ownerName}} </h5>
-        <p>
-          {{ apt.aptNotes }}
-          <br>
-          Date: {{ apt.aptDate }}
-        </p>
-      </div>
-
-    </section>
+    <div class="row justify-content-center">
+      <appointment-list v-bind:appointments="appointments"/>
+    </div>
+    
   </div>
 </template>
 
@@ -26,6 +13,7 @@
 <!-- App State -->
 <script>
   import axios from "axios";
+  import AppointmentList from "./components/AppointmentList.vue";
 
   export default {
 
@@ -41,7 +29,9 @@
     },
 
     // -- components --
-    components: {},
+    components: {
+      AppointmentList
+    },
 
     // -- lifecycle hooks --
     mounted() {
